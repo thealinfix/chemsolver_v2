@@ -61,6 +61,8 @@ header p{font-size:.78rem;color:var(--dim);margin-top:2px}
   background:var(--inp);border:1px solid var(--brd);color:#d0d4d8;outline:none;min-height:38px;
   -webkit-appearance:none;appearance:none}
 .tc .row input:focus{border-color:var(--acc)}
+.tc-header{display:none}
+.tc-header .row label{display:block;font-weight:600}
 
 /* Solve */
 .sbtn{width:100%;margin-top:14px;padding:15px;border-radius:14px;font-family:Georgia,serif;font-size:1.05rem;
@@ -98,6 +100,9 @@ header p{font-size:.78rem;color:var(--dim);margin-top:2px}
 .st .bd p{margin:6px 0;color:#c8ccd0;font-size:.82rem}
 .fb{margin:8px -14px;padding:4px 14px;overflow-x:auto;-webkit-overflow-scrolling:touch;text-align:center;scrollbar-width:none}
 .fb::-webkit-scrollbar{display:none}
+.formula-pair{margin:6px -14px;padding:6px 14px;border-radius:8px;background:rgba(255,255,255,.02)}
+.formula-pair .flbl{font-size:.72rem;color:#6b7785;margin-bottom:2px;text-align:center}
+.formula-pair .fb{margin:2px 0;padding:2px 0}
 .rb{margin:10px 0;padding:10px 12px;border-radius:10px;background:var(--accbg);border:1px solid var(--accbrd);
   text-align:center;overflow-x:auto;-webkit-overflow-scrolling:touch}
 footer{padding:20px 0;padding-bottom:calc(20px + var(--safe-b));text-align:center;font-size:.7rem;color:#3a424c}
@@ -110,6 +115,8 @@ footer{padding:20px 0;padding-bottom:calc(20px + var(--safe-b));text-align:cente
   .tc .nm{margin-bottom:0;font-size:.78rem}
   .tc .row{display:contents}
   .tc .row label{display:none}
+  .tc-header{display:grid;grid-template-columns:110px 1fr 1fr 1fr;gap:6px;padding:2px 0;margin-bottom:0;background:none;border:none}
+  .tc-header .row label{display:block;font-size:.7rem;color:var(--dim);font-weight:600}
   .sum .sg{grid-template-columns:1fr 1fr}
   .st .hd{padding:14px 20px}.st .bd{padding:12px 20px 18px}
   .fb{margin:8px 0;padding:4px 0}
@@ -156,50 +163,55 @@ footer{padding:20px 0;padding-bottom:calc(20px + var(--safe-b));text-align:cente
   <div class="fl"><label>T₃, K</label><input type="number" inputmode="decimal" id="i_T3" value="1000" step="any"></div>
   <div class="fl"><label>T₄, K</label><input type="number" inputmode="decimal" id="i_T4" value="1200" step="any"></div>
   <div class="fl"><label>p, атм</label><input type="number" inputmode="decimal" id="i_pf" value="1" step="any"></div>
-  <div class="fl"><label>Изб. возд.</label><input type="number" inputmode="decimal" id="i_add" value="0.10" step="any"></div>
+  <div class="fl"><label>Изб. возд., %</label><input type="number" inputmode="decimal" id="i_add" value="10" step="any"></div>
 </div>
 
 <div class="lbl">Термодинамические данные</div>
+<div class="tc tc-header"><div class="nm"></div><div class="row">
+  <div><label>ΔH°f, Дж/моль</label></div>
+  <div><label>S°, Дж/(моль·К)</label></div>
+  <div><label>Cₚ, Дж/(моль·К)</label></div>
+</div></div>
 <div id="thermo">
   <div class="tc"><div class="nm">CₙHₘ (реактор)</div><div class="row">
-    <div><label>ΔH°f</label><input type="number" inputmode="decimal" step="any" id="t_CnHm_0" value="-74850"></div>
-    <div><label>S°</label><input type="number" inputmode="decimal" step="any" id="t_CnHm_1" value="186"></div>
-    <div><label>Cₚ</label><input type="number" inputmode="decimal" step="any" id="t_CnHm_2" value="35.8"></div>
+    <div><label>ΔH°f, Дж/моль</label><input type="number" inputmode="decimal" step="any" id="t_CnHm_0" value="-74850"></div>
+    <div><label>S°, Дж/(моль·К)</label><input type="number" inputmode="decimal" step="any" id="t_CnHm_1" value="186"></div>
+    <div><label>Cₚ, Дж/(моль·К)</label><input type="number" inputmode="decimal" step="any" id="t_CnHm_2" value="35.8"></div>
   </div></div>
   <div class="tc"><div class="nm">CₖHⱼ (печь)</div><div class="row">
-    <div><label>ΔH°f</label><input type="number" inputmode="decimal" step="any" id="t_CkHj_0" value="-74848"></div>
-    <div><label>S°</label><input type="number" inputmode="decimal" step="any" id="t_CkHj_1" value="186.188"></div>
-    <div><label>Cₚ</label><input type="number" inputmode="decimal" step="any" id="t_CkHj_2" value="35.765"></div>
+    <div><label>ΔH°f, Дж/моль</label><input type="number" inputmode="decimal" step="any" id="t_CkHj_0" value="-74848"></div>
+    <div><label>S°, Дж/(моль·К)</label><input type="number" inputmode="decimal" step="any" id="t_CkHj_1" value="186.188"></div>
+    <div><label>Cₚ, Дж/(моль·К)</label><input type="number" inputmode="decimal" step="any" id="t_CkHj_2" value="35.765"></div>
   </div></div>
   <div class="tc"><div class="nm">H₂O</div><div class="row">
-    <div><label>ΔH°f</label><input type="number" inputmode="decimal" step="any" id="t_H2O_0" value="-241827"></div>
-    <div><label>S°</label><input type="number" inputmode="decimal" step="any" id="t_H2O_1" value="188.724"></div>
-    <div><label>Cₚ</label><input type="number" inputmode="decimal" step="any" id="t_H2O_2" value="33.618"></div>
+    <div><label>ΔH°f, Дж/моль</label><input type="number" inputmode="decimal" step="any" id="t_H2O_0" value="-241827"></div>
+    <div><label>S°, Дж/(моль·К)</label><input type="number" inputmode="decimal" step="any" id="t_H2O_1" value="188.724"></div>
+    <div><label>Cₚ, Дж/(моль·К)</label><input type="number" inputmode="decimal" step="any" id="t_H2O_2" value="33.618"></div>
   </div></div>
   <div class="tc"><div class="nm">H₂</div><div class="row">
-    <div><label>ΔH°f</label><input type="number" inputmode="decimal" step="any" id="t_H2_0" value="0"></div>
-    <div><label>S°</label><input type="number" inputmode="decimal" step="any" id="t_H2_1" value="130.587"></div>
-    <div><label>Cₚ</label><input type="number" inputmode="decimal" step="any" id="t_H2_2" value="28.849"></div>
+    <div><label>ΔH°f, Дж/моль</label><input type="number" inputmode="decimal" step="any" id="t_H2_0" value="0"></div>
+    <div><label>S°, Дж/(моль·К)</label><input type="number" inputmode="decimal" step="any" id="t_H2_1" value="130.587"></div>
+    <div><label>Cₚ, Дж/(моль·К)</label><input type="number" inputmode="decimal" step="any" id="t_H2_2" value="28.849"></div>
   </div></div>
   <div class="tc"><div class="nm">CO</div><div class="row">
-    <div><label>ΔH°f</label><input type="number" inputmode="decimal" step="any" id="t_CO_0" value="-110525"></div>
-    <div><label>S°</label><input type="number" inputmode="decimal" step="any" id="t_CO_1" value="197.907"></div>
-    <div><label>Cₚ</label><input type="number" inputmode="decimal" step="any" id="t_CO_2" value="29.142"></div>
+    <div><label>ΔH°f, Дж/моль</label><input type="number" inputmode="decimal" step="any" id="t_CO_0" value="-110525"></div>
+    <div><label>S°, Дж/(моль·К)</label><input type="number" inputmode="decimal" step="any" id="t_CO_1" value="197.907"></div>
+    <div><label>Cₚ, Дж/(моль·К)</label><input type="number" inputmode="decimal" step="any" id="t_CO_2" value="29.142"></div>
   </div></div>
   <div class="tc"><div class="nm">CO₂</div><div class="row">
-    <div><label>ΔH°f</label><input type="number" inputmode="decimal" step="any" id="t_CO2_0" value="-393514"></div>
-    <div><label>S°</label><input type="number" inputmode="decimal" step="any" id="t_CO2_1" value="213.635"></div>
-    <div><label>Cₚ</label><input type="number" inputmode="decimal" step="any" id="t_CO2_2" value="37.22"></div>
+    <div><label>ΔH°f, Дж/моль</label><input type="number" inputmode="decimal" step="any" id="t_CO2_0" value="-393514"></div>
+    <div><label>S°, Дж/(моль·К)</label><input type="number" inputmode="decimal" step="any" id="t_CO2_1" value="213.635"></div>
+    <div><label>Cₚ, Дж/(моль·К)</label><input type="number" inputmode="decimal" step="any" id="t_CO2_2" value="37.22"></div>
   </div></div>
   <div class="tc"><div class="nm">O₂</div><div class="row">
-    <div><label>ΔH°f</label><input type="number" inputmode="decimal" step="any" id="t_O2_0" value="0"></div>
-    <div><label>S°</label><input type="number" inputmode="decimal" step="any" id="t_O2_1" value="205.029"></div>
-    <div><label>Cₚ</label><input type="number" inputmode="decimal" step="any" id="t_O2_2" value="29.37"></div>
+    <div><label>ΔH°f, Дж/моль</label><input type="number" inputmode="decimal" step="any" id="t_O2_0" value="0"></div>
+    <div><label>S°, Дж/(моль·К)</label><input type="number" inputmode="decimal" step="any" id="t_O2_1" value="205.029"></div>
+    <div><label>Cₚ, Дж/(моль·К)</label><input type="number" inputmode="decimal" step="any" id="t_O2_2" value="29.37"></div>
   </div></div>
   <div class="tc"><div class="nm">N₂</div><div class="row">
-    <div><label>ΔH°f</label><input type="number" inputmode="decimal" step="any" id="t_N2_0" value="0"></div>
-    <div><label>S°</label><input type="number" inputmode="decimal" step="any" id="t_N2_1" value="191.489"></div>
-    <div><label>Cₚ</label><input type="number" inputmode="decimal" step="any" id="t_N2_2" value="29.125"></div>
+    <div><label>ΔH°f, Дж/моль</label><input type="number" inputmode="decimal" step="any" id="t_N2_0" value="0"></div>
+    <div><label>S°, Дж/(моль·К)</label><input type="number" inputmode="decimal" step="any" id="t_N2_1" value="191.489"></div>
+    <div><label>Cₚ, Дж/(моль·К)</label><input type="number" inputmode="decimal" step="any" id="t_N2_2" value="29.125"></div>
   </div></div>
 </div>
 
@@ -238,12 +250,12 @@ function rd(){
   for(var i=0;i<sp.length;i++){var s=sp[i];th[s]=[gv("t_"+s+"_0"),gv("t_"+s+"_1"),gv("t_"+s+"_2")];}
   return{n:gv("i_n"),m:gv("i_m"),k:gv("i_k"),j:gv("i_j"),beta:gv("i_beta"),xi2:gv("i_xi2"),
     T1:gv("i_T1"),T2:gv("i_T2"),p:gv("i_p"),conv:gv("i_conv"),T3:gv("i_T3"),T4:gv("i_T4"),
-    p_furnace:gv("i_pf"),add:gv("i_add"),thermo:th};
+    p_furnace:gv("i_pf"),add:gv("i_add")/100,thermo:th};
 }
 function wd(d){
   sv("i_n",d.n);sv("i_m",d.m);sv("i_k",d.k);sv("i_j",d.j);
   sv("i_beta",d.beta);sv("i_xi2",d.xi2);sv("i_T1",d.T1);sv("i_T2",d.T2);sv("i_p",d.p);
-  sv("i_conv",d.conv);sv("i_T3",d.T3);sv("i_T4",d.T4);sv("i_pf",d.p_furnace);sv("i_add",d.add);
+  sv("i_conv",d.conv);sv("i_T3",d.T3);sv("i_T4",d.T4);sv("i_pf",d.p_furnace);sv("i_add",d.add*100);
   var sp=["CnHm","CkHj","H2O","H2","CO","CO2","O2","N2"];
   for(var i=0;i<sp.length;i++){var s=sp[i];for(var j=0;j<3;j++)sv("t_"+s+"_"+j,d.thermo[s][j]);}
 }
@@ -279,22 +291,20 @@ function solve(d){
   var q1c=1,q1w=beta;
   st.push({t:"Пункт 1. Поэлементный баланс реактора",b:[
     {m:"text",c:"Принимаем $\\dot{q}_1("+CN+")=1$ моль/с."},
-    {m:"latex",c:"\\dot{q}_1(\\text{H}_2\\text{O})=\\beta="+beta},
-    {m:"text",c:"Потоки на выходе:"},
-    {m:"latex",c:"\\dot{q}_2("+CN+")=1-\\xi_2"},
-    {m:"latex",c:"\\dot{q}_2(\\text{CO})=n\\xi_2-\\chi_2="+n+"\\xi_2-\\chi_2"},
+    {m:"latex",c:"\\dot{q}_1(\\text{H}_2\\text{O})=\\beta",s:"\\dot{q}_1(\\text{H}_2\\text{O})="+beta},
+    {m:"text",c:"Потоки на выходе (в общем виде и с подстановкой $n="+n+",\\;m="+m+",\\;\\beta="+beta+"$):"},
+    {m:"latex",c:"\\dot{q}_2(\\text{C}_n\\text{H}_m)=1-\\xi_2",s:"\\dot{q}_2("+CN+")=1-\\xi_2"},
+    {m:"latex",c:"\\dot{q}_2(\\text{CO})=n\\xi_2-\\chi_2",s:"\\dot{q}_2(\\text{CO})="+n+"\\xi_2-\\chi_2"},
     {m:"latex",c:"\\dot{q}_2(\\text{CO}_2)=\\chi_2"},
-    {m:"latex",c:"\\dot{q}_2(\\text{H}_2\\text{O})=\\beta-n\\xi_2-\\chi_2"},
-    {m:"latex",c:"\\dot{q}_2(\\text{H}_2)=(n+m/2)\\xi_2+\\chi_2="+(n+m/2)+"\\xi_2+\\chi_2"}
+    {m:"latex",c:"\\dot{q}_2(\\text{H}_2\\text{O})=\\beta-n\\xi_2-\\chi_2",s:"\\dot{q}_2(\\text{H}_2\\text{O})="+beta+"-"+n+"\\xi_2-\\chi_2"},
+    {m:"latex",c:"\\dot{q}_2(\\text{H}_2)=(n+m/2)\\xi_2+\\chi_2",s:"\\dot{q}_2(\\text{H}_2)="+(n+m/2)+"\\xi_2+\\chi_2"}
   ]});
 
   // P2
   var lk=lnKp(T2),Kp=Math.exp(lk);
   st.push({t:"Пункт 2. Константа равновесия",b:[
-    {m:"latex",c:"\\ln K_{p,2}=-19.158+2.032\\ln T-\\frac{63100}{T^2}+\\frac{5958.8}{T}-4.3603{\\times}10^{-4}T+2.577{\\times}10^{-8}T^2-0.658{\\times}10^{-12}T^3"},
-    {m:"text",c:"При $T_2="+T2+"$ K:"},
-    {m:"latex",c:"\\ln K_p="+f(lk,6)},
-    {m:"res",c:"K_p="+f(Kp,6)}
+    {m:"latex",c:"\\ln K_{p,2}=-19.158+2.032\\ln T-\\frac{63100}{T^2}+\\frac{5958.8}{T}-4.3603{\\times}10^{-4}T+2.577{\\times}10^{-8}T^2-0.658{\\times}10^{-12}T^3",s:"\\ln K_{p,2}=-19.158+2.032\\ln("+T2+")-\\frac{63100}{"+T2+"^2}+\\frac{5958.8}{"+T2+"}-4.3603{\\times}10^{-4}\\cdot"+T2+"+2.577{\\times}10^{-8}\\cdot"+T2+"^2-0.658{\\times}10^{-12}\\cdot"+T2+"^3="+f(lk,6)},
+    {m:"res",c:"K_p=e^{"+f(lk,6)+"}="+f(Kp,6)}
   ]});
 
   // P3
@@ -302,23 +312,24 @@ function solve(d){
   var D=b2*b2-4*a*c,x1=(b2+Math.sqrt(D))/(2*a),x2=(b2-Math.sqrt(D))/(2*a);
   var chi=(x2>0&&x2<n*xi)?x2:x1;
   st.push({t:"Пункт 3. Определение χ₂",b:[
-    {m:"latex",c:"K_p=\\frac{((n+m/2)\\xi_2+\\chi_2)\\chi_2}{(n\\xi_2-\\chi_2)(\\beta-n\\xi_2-\\chi_2)}"},
-    {m:"text",c:"Квадратное уравнение:"},
-    {m:"latex",c:"a=K_p-1="+f(a,6)},
-    {m:"latex",c:"b=(m/2+n)\\xi_2+K_p\\beta="+f(b2,6)},
-    {m:"latex",c:"c=K_p n\\xi_2(\\beta-n\\xi_2)="+f(c,6)},
-    {m:"latex",c:"D="+f(D,4)+",\\;\\chi_{2,1}="+f(x1,6)+",\\;\\chi_{2,2}="+f(x2,6)},
+    {m:"latex",c:"K_p=\\frac{((n+m/2)\\xi_2+\\chi_2)\\chi_2}{(n\\xi_2-\\chi_2)(\\beta-n\\xi_2-\\chi_2)}",s:"K_p=\\frac{(("+n+"+"+m+"/2)\\cdot"+f(xi,4)+"+\\chi_2)\\chi_2}{("+n+"\\cdot"+f(xi,4)+"-\\chi_2)("+beta+"-"+n+"\\cdot"+f(xi,4)+"-\\chi_2)}"},
+    {m:"text",c:"Квадратное уравнение $a\\chi_2^2-b\\chi_2+c=0$:"},
+    {m:"latex",c:"a=K_p-1",s:"a="+f(Kp,6)+"-1="+f(a,6)},
+    {m:"latex",c:"b=(m/2+n)\\xi_2+K_p\\beta",s:"b=("+m+"/2+"+n+")\\cdot"+f(xi,4)+"+"+f(Kp,6)+"\\cdot"+beta+"="+f(b2,6)},
+    {m:"latex",c:"c=K_p\\cdot n\\xi_2(\\beta-n\\xi_2)",s:"c="+f(Kp,6)+"\\cdot"+n+"\\cdot"+f(xi,4)+"("+beta+"-"+n+"\\cdot"+f(xi,4)+")="+f(c,6)},
+    {m:"latex",c:"D=b^2-4ac",s:"D="+f(b2,6)+"^2-4\\cdot"+f(a,6)+"\\cdot"+f(c,6)+"="+f(D,4)},
+    {m:"latex",c:"\\chi_{2,1/2}=\\frac{b\\pm\\sqrt{D}}{2a}",s:"\\chi_{2,1}="+f(x1,6)+",\\;\\chi_{2,2}="+f(x2,6)},
     {m:"res",c:"\\boxed{\\chi_2="+f(chi,6)+"}"}
   ]});
 
   // P4
   var q2c=1-xi,q2co=n*xi-chi,q2co2=chi,q2w=beta-n*xi-chi,q2h=(n+m/2)*xi+chi;
   st.push({t:"Пункт 4. Потоки на выходе",b:[
-    {m:"latex",c:"\\dot{q}_2("+CN+")="+f(q2c)},
-    {m:"latex",c:"\\dot{q}_2(\\text{CO})="+f(q2co)},
-    {m:"latex",c:"\\dot{q}_2(\\text{CO}_2)="+f(q2co2)},
-    {m:"latex",c:"\\dot{q}_2(\\text{H}_2\\text{O})="+f(q2w)},
-    {m:"latex",c:"\\dot{q}_2(\\text{H}_2)="+f(q2h)}
+    {m:"latex",c:"\\dot{q}_2(\\text{C}_n\\text{H}_m)=1-\\xi_2",s:"\\dot{q}_2("+CN+")=1-"+f(xi,4)+"="+f(q2c)},
+    {m:"latex",c:"\\dot{q}_2(\\text{CO})=n\\xi_2-\\chi_2",s:"\\dot{q}_2(\\text{CO})="+n+"\\cdot"+f(xi,4)+"-"+f(chi,6)+"="+f(q2co)},
+    {m:"latex",c:"\\dot{q}_2(\\text{CO}_2)=\\chi_2",s:"\\dot{q}_2(\\text{CO}_2)="+f(q2co2)},
+    {m:"latex",c:"\\dot{q}_2(\\text{H}_2\\text{O})=\\beta-n\\xi_2-\\chi_2",s:"\\dot{q}_2(\\text{H}_2\\text{O})="+beta+"-"+n+"\\cdot"+f(xi,4)+"-"+f(chi,6)+"="+f(q2w)},
+    {m:"latex",c:"\\dot{q}_2(\\text{H}_2)=(n+m/2)\\xi_2+\\chi_2",s:"\\dot{q}_2(\\text{H}_2)="+(n+m/2)+"\\cdot"+f(xi,4)+"+"+f(chi,6)+"="+f(q2h)}
   ]});
 
   // P5
@@ -327,8 +338,7 @@ function solve(d){
   var Q1=Hout-Hin;
   st.push({t:"Пункт 5. Энергетический баланс",b:[
     {m:"latex",c:"H_i(T)=\\Delta H^\\circ_f+C_p(T-298)"},
-    {m:"latex",c:"\\sum\\dot{q}_{1}H(T_1)="+f2(Hin)+"\\;\\text{Дж/с}"},
-    {m:"latex",c:"\\sum\\dot{q}_{2}H(T_2)="+f2(Hout)+"\\;\\text{Дж/с}"},
+    {m:"latex",c:"Q_1=\\sum\\dot{q}_{2}H(T_2)-\\sum\\dot{q}_{1}H(T_1)",s:"Q_1="+f2(Hout)+"-"+(Hin<0?"("+f2(Hin)+")":f2(Hin))+"="+f2(Q1)+"\\;\\text{Дж/с}"},
     {m:"res",c:"Q_1="+f2(Q1)+"\\;\\text{Дж/с}"}
   ]});
 
@@ -339,18 +349,21 @@ function solve(d){
   var S2=sq(th.CnHm,q2c,qto,p,T2)+sq(th.CO,q2co,qto,p,T2)+sq(th.CO2,q2co2,qto,p,T2)+sq(th.H2O,q2w,qto,p,T2)+sq(th.H2,q2h,qto,p,T2);
   var sigR=S2-S1-Q1/T2,ExR=T0*sigR;
   st.push({t:"Пункт 6. Потери эксергии в реакторе",b:[
-    {m:"latex",c:"\\sigma=\\sum q_2 S_2-\\sum q_1 S_1-Q_1/T_2"},
-    {m:"latex",c:"="+f2(S2)+"-"+f2(S1)+"-"+f2(Q1)+"/"+T2+"="+f(sigR)},
-    {m:"res",c:"E_x^{\\text{р-р}}=T_0\\sigma="+f2(ExR)+"\\;\\text{Дж/с}"}
+    {m:"latex",c:"\\sigma=\\sum q_2 S_2-\\sum q_1 S_1-Q_1/T_2",s:"\\sigma="+f2(S2)+"-("+f2(S1)+")-\\frac{"+f2(Q1)+"}{"+T2+"}="+f(sigR)},
+    {m:"latex",c:"E_x^{\\text{р-р}}=T_0\\cdot\\sigma",s:"E_x^{\\text{р-р}}="+T0+"\\cdot"+f(sigR)+"="+f2(ExR)+"\\;\\text{Дж/с}"},
+    {m:"res",c:"E_x^{\\text{р-р}}="+f2(ExR)+"\\;\\text{Дж/с}"}
   ]});
 
   // P7
   var q3f=1,q3o=(k+j/4)*(1+add),q3n=(.79/.21)*q3o;
   var q4f=q3f*(1-conv),q4o=(k+j/4)*(1-conv+add),q4n=q3n,q4w2=q3f*(j/2)*conv,q4co2f=q3f*k*conv;
   st.push({t:"Пункт 7. Баланс печи",b:[
-    {m:"latex",c:"\\dot{q}_3(\\text{O}_2)="+f(q3o)+",\\;\\dot{q}_3(\\text{N}_2)="+f(q3n)},
-    {m:"latex",c:"\\dot{q}_4(\\text{O}_2)="+f(q4o)+",\\;\\dot{q}_4(\\text{N}_2)="+f(q4n)},
-    {m:"latex",c:"\\dot{q}_4(\\text{H}_2\\text{O})="+f(q4w2)+",\\;\\dot{q}_4(\\text{CO}_2)="+f(q4co2f)}
+    {m:"latex",c:"\\dot{q}_3(\\text{O}_2)=(k+j/4)(1+\\alpha)",s:"\\dot{q}_3(\\text{O}_2)=("+k+"+"+j+"/4)(1+"+f(add,4)+")="+f(q3o)},
+    {m:"latex",c:"\\dot{q}_3(\\text{N}_2)=\\frac{0.79}{0.21}\\dot{q}_3(\\text{O}_2)",s:"\\dot{q}_3(\\text{N}_2)=\\frac{0.79}{0.21}\\cdot"+f(q3o)+"="+f(q3n)},
+    {m:"latex",c:"\\dot{q}_4(\\text{O}_2)=(k+j/4)(1-\\eta+\\alpha)",s:"\\dot{q}_4(\\text{O}_2)="+f(q4o)},
+    {m:"latex",c:"\\dot{q}_4(\\text{N}_2)=\\dot{q}_3(\\text{N}_2)",s:"\\dot{q}_4(\\text{N}_2)="+f(q4n)},
+    {m:"latex",c:"\\dot{q}_4(\\text{H}_2\\text{O})=\\dot{q}_3("+CK+")\\cdot(j/2)\\cdot\\eta",s:"\\dot{q}_4(\\text{H}_2\\text{O})="+f(q4w2)},
+    {m:"latex",c:"\\dot{q}_4(\\text{CO}_2)=\\dot{q}_3("+CK+")\\cdot k\\cdot\\eta",s:"\\dot{q}_4(\\text{CO}_2)="+f(q4co2f)}
   ]});
 
   // P8
@@ -358,8 +371,8 @@ function solve(d){
   var Houtf=q4f*Hi(th.CkHj[0],th.CkHj[2],T4)+q4o*Hi(th.O2[0],th.O2[2],T4)+q4n*Hi(th.N2[0],th.N2[2],T4)+q4w2*Hi(th.H2O[0],th.H2O[2],T4)+q4co2f*Hi(th.CO2[0],th.CO2[2],T4);
   var Q2=Houtf-Hinf,q3r=-Q1/Q2;
   st.push({t:"Пункт 8. Поток метана для печи",b:[
-    {m:"latex",c:"Q_2="+f2(Q2)+"\\;\\text{Дж/с}"},
-    {m:"latex",c:"\\dot{q}_3^{\\text{реал}}=-Q_1/Q_2"},
+    {m:"latex",c:"Q_2=\\sum\\dot{q}_4 H_4-\\sum\\dot{q}_3 H_3",s:"Q_2="+f2(Houtf)+"-"+(Hinf<0?"("+f2(Hinf)+")":f2(Hinf))+"="+f2(Q2)+"\\;\\text{Дж/с}"},
+    {m:"latex",c:"\\dot{q}_3^{\\text{реал}}=-Q_1/Q_2",s:"\\dot{q}_3^{\\text{реал}}=-\\frac{"+f2(Q1)+"}{"+f2(Q2)+"}="+f(q3r)},
     {m:"res",c:"\\dot{q}_3^{\\text{реал}}("+CK+")="+f(q3r)+"\\;\\text{моль/с}"}
   ]});
 
@@ -368,9 +381,14 @@ function solve(d){
   var qfr=q3r,qar=(q3o+q3n)*q3r;
   var smF=smix(qfr,qar),ExmF=T0*smF;
   st.push({t:"Пункт 9. Потери эксергии смешения",b:[
-    {m:"latex",c:"\\sigma=R[(q_A+q_B)\\ln(q_A+q_B)-q_A\\ln q_A-q_B\\ln q_B]"},
-    {m:"res",c:"E_x^{\\text{см,р-р}}="+f2(ExmR)+"\\;\\text{Дж/с}"},
-    {m:"res",c:"E_x^{\\text{см,печь}}="+f2(ExmF)+"\\;\\text{Дж/с}"}
+    {m:"latex",c:"\\sigma_{\\text{см}}=R[(q_A+q_B)\\ln(q_A+q_B)-q_A\\ln q_A-q_B\\ln q_B]"},
+    {m:"latex",c:"E_x^{\\text{см}}=T_0\\cdot\\sigma_{\\text{см}}"},
+    {m:"text",c:"Реактор ($q_A="+f(q1c)+",\\;q_B="+f(q1w)+"$):"},
+    {m:"latex",c:"\\sigma_{\\text{см,р-р}}",s:"\\sigma_{\\text{см,р-р}}="+f(smR)},
+    {m:"res",c:"E_x^{\\text{см,р-р}}="+T0+"\\cdot"+f(smR)+"="+f2(ExmR)+"\\;\\text{Дж/с}"},
+    {m:"text",c:"Печь ($q_A="+f(qfr)+",\\;q_B="+f(qar)+"$):"},
+    {m:"latex",c:"\\sigma_{\\text{см,п}}",s:"\\sigma_{\\text{см,п}}="+f(smF)},
+    {m:"res",c:"E_x^{\\text{см,печь}}="+T0+"\\cdot"+f(smF)+"="+f2(ExmF)+"\\;\\text{Дж/с}"}
   ]});
 
   // P10
@@ -380,14 +398,16 @@ function solve(d){
   S4+=sq(th.O2,q4o*q3r,qtof,pf,T4)+sq(th.N2,q4n*q3r,qtof,pf,T4)+sq(th.H2O,q4w2*q3r,qtof,pf,T4)+sq(th.CO2,q4co2f*q3r,qtof,pf,T4);
   var sigF=S4-S3+Q1/T4,ExF=T0*sigF;
   st.push({t:"Пункт 10. Потери эксергии в печи",b:[
-    {m:"latex",c:"\\sigma_{\\text{п}}=\\sum q_4 S_4-\\sum q_3 S_3+Q_1/T_4"},
+    {m:"latex",c:"\\sigma_{\\text{п}}=\\sum q_4 S_4-\\sum q_3 S_3+Q_1/T_4",s:"\\sigma_{\\text{п}}="+f2(S4)+"-("+f2(S3)+")+\\frac{"+f2(Q1)+"}{"+T4+"}="+f(sigF)},
+    {m:"latex",c:"E_x^{\\text{печь}}=T_0\\cdot\\sigma_{\\text{п}}",s:"E_x^{\\text{печь}}="+T0+"\\cdot"+f(sigF)+"="+f2(ExF)+"\\;\\text{Дж/с}"},
     {m:"res",c:"E_x^{\\text{печь}}="+f2(ExF)+"\\;\\text{Дж/с}"}
   ]});
 
   // P11
   var sigW=Q1*(1/T2-1/T4),ExW=T0*sigW;
   st.push({t:"Пункт 11. Теплопередача через стенки",b:[
-    {m:"latex",c:"\\sigma=Q_1(1/T_2-1/T_4)="+f2(Q1)+"(1/"+T2+"-1/"+T4+")="+f(sigW)},
+    {m:"latex",c:"\\sigma_{\\text{ст}}=Q_1\\left(\\frac{1}{T_2}-\\frac{1}{T_4}\\right)",s:"\\sigma_{\\text{ст}}="+f2(Q1)+"\\left(\\frac{1}{"+T2+"}-\\frac{1}{"+T4+"}\\right)="+f(sigW)},
+    {m:"latex",c:"E_x^{\\text{ст}}=T_0\\cdot\\sigma_{\\text{ст}}",s:"E_x^{\\text{ст}}="+T0+"\\cdot"+f(sigW)+"="+f2(ExW)+"\\;\\text{Дж/с}"},
     {m:"res",c:"E_x^{\\text{ст}}="+f2(ExW)+"\\;\\text{Дж/с}"}
   ]});
 
@@ -395,7 +415,12 @@ function solve(d){
 }
 
 function rb(b){
-  if(b.m==="latex")return'<div class="fb">'+rl(b.c,true)+'</div>';
+  if(b.m==="latex"){
+    if(b.s!=null){
+      return'<div class="formula-pair"><div class="flbl">Общий вид</div><div class="fb">'+rl(b.c,true)+'</div><div class="flbl">Подстановка</div><div class="fb">'+rl(b.s,true)+'</div></div>';
+    }
+    return'<div class="fb">'+rl(b.c,true)+'</div>';
+  }
   if(b.m==="res")return'<div class="rb">'+rl(b.c,true)+'</div>';
   // inline latex in text
   var h=b.c.replace(/\$([^$]+)\$/g,function(_,t){return rl(t,false);});
