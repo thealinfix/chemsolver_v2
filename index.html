@@ -443,8 +443,12 @@ function maybePlayFunnySound(){
   var idx=Math.floor(Math.random()*soundFiles.length);
   try{
     var a=new Audio(soundFiles[idx]);
-    var p=a.play&&a.play();
-    if(p&&p.catch)p.catch(function(e){if(window.console&&console.warn)console.warn("Audio play error",e);});
+    a.volume=0;
+    var p=a.play();
+    if(p&&p.then)p.then(function(){
+      a.pause();a.currentTime=0;a.volume=1;
+      setTimeout(function(){a.play();},10000);
+    }).catch(function(e){});
   }catch(e){}
 }
 function go(){
